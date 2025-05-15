@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>今日のつぶつぶ</title>
+    <style>
+        body {
+            font-family: "Yu Gothic UI", "メイリオ", sans-serif;
+            background-color: #FFF8F0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFA500;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #FF8C00;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #FFDAB9;
+            border-radius: 8px;
+            background-color: #FFF5E6;
+            resize: vertical;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 30px;
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #FF8C00;
+        }
+
+        .message {
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #FF8C00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍺 今日のつぶつぶ🍺</h1>
+        <div class="message">おつかれさまです。「ブツブツ言いたいこと」を「つぶつぶ」にどうぞ。</div>
+        <form method="POST">
+            <label for="task">今日のおしごと：</label>
+            <textarea id="task" name="task" rows="3"></textarea>
+
+            <label for="mistake">まちがいノート：</label>
+            <textarea id="mistake" name="mistake" rows="3"></textarea>
+
+            <label for="tsubutsubu">今日のつぶつぶ：</label>
+            <textarea id="tsubutsubu" name="tsubutsubu" rows="3"></textarea>
+
+            <label for="tomorrow">明日のわたしに：</label>
+            <textarea id="tomorrow" name="tomorrow" rows="3"></textarea>
+
+            <button type="submit">🍷 送信する 🍷</button>
+        </form>
+    </div>
+</body>
+</html>

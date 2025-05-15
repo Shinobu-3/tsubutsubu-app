@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>スプレッドシート風ガントチャート</title>
+    <style>
+        body { font-family: 'Meiryo', sans-serif; }
+        table { border-collapse: collapse; width: auto; }
+        th, td { border: 1px solid #ccc; padding: 4px; text-align: center; width: 30px; height: 30px; }
+        .task-name { width: 150px; text-align: left; }
+        .bar { background-color: #4CAF50; border-radius: 4px; height: 100%; width: 100%; }
+    </style>
+</head>
+<body>
+    <h2>最終課題ガントチャート</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="task-name">タスク</th>
+                <th>5/16</th>
+                <th>5/17</th>
+                <th>5/18</th>
+                <th>5/19</th>
+                <th>5/20</th>
+                <th>5/21</th>
+                <th>5/22</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="task-name">設計</td>
+                <td><div class="bar"></div></td>
+                <td><div class="bar"></div></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="task-name">開発</td>
+                <td></td>
+                <td></td>
+                <td><div class="bar"></div></td>
+                <td><div class="bar"></div></td>
+                <td><div class="bar"></div></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="task-name">テスト</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="bar"></div></td>
+                <td><div class="bar"></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="task-name">リリース</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="bar"></div></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
