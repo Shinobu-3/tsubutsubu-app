@@ -6,8 +6,8 @@
     <style>
         body {
             font-family: "Yu Gothic UI", "メイリオ", sans-serif;
-            background-color: #FFF8F0;
-            color: #333;
+            background-color: #f5fff5;
+            color: #2e4e3f;
             margin: 0;
             padding: 0;
         }
@@ -16,38 +16,54 @@
             max-width: 600px;
             margin: 40px auto;
             padding: 30px;
-            background-color: #FFFFFF;
+            background-color: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+            box-shadow: 0 0 10px rgba(47, 139, 87, 0.15);
         }
 
         h1 {
             text-align: center;
-            color: #FFA500;
+            color: #2e8b57;
             margin-bottom: 20px;
         }
 
-        label {
-            display: block;
-            margin-top: 20px;
-            font-weight: bold;
-            color: #FF8C00;
+        .message {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2e8b57;
         }
 
-        textarea {
+        .work-item {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #bfe8cf;
+            border-radius: 10px;
+            background-color: #f0fdfa;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3a6e58;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea, input[type="text"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #FFDAB9;
+            margin-top: 5px;
+            margin-bottom: 10px;
             border-radius: 8px;
-            background-color: #FFF5E6;
+            border: 1px solid #bfe8cf;
+            background-color: #ffffff;
             resize: vertical;
             font-size: 14px;
         }
 
         button {
             margin-top: 30px;
-            background-color: #FFA500;
-            color: white;
+            background-color: #bfe8cf;
+            color: #2e8b57;
             border: none;
             padding: 12px 24px;
             font-size: 16px;
@@ -57,35 +73,63 @@
         }
 
         button:hover {
-            background-color: #FF8C00;
-        }
-
-        .message {
-            text-align: center;
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #FF8C00;
+            background-color: #a0d9bd;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🍺 今日のつぶつぶ🍺</h1>
-        <div class="message">おつかれさまです。「ブツブツ言いたいこと」を「つぶつぶ」にどうぞ。</div>
+        <h1>🌿 今日のつぶつぶ 🌿</h1>
+        <div class="message">
+            おつかれさまです。<br>「心にたまったつぶやき」を「つぶつぶ」に書いて、置いて帰ろう。<br>
+            担当業務の□BOXにチェックを入れて、入力してね！
+        </div>
         <form method="POST">
-            <label for="task">今日のおしごと：</label>
-            <textarea id="task" name="task" rows="3"></textarea>
 
-            <label for="mistake">まちがいノート：</label>
-            <textarea id="mistake" name="mistake" rows="3"></textarea>
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="教室清掃"> 教室清掃</label>
+                <textarea name="comment_教室清掃" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_教室清掃" placeholder="まちがい・反省"></textarea>
+            </div>
 
-            <label for="tsubutsubu">今日のつぶつぶ：</label>
-            <textarea id="tsubutsubu" name="tsubutsubu" rows="3"></textarea>
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="パソコン設定"> パソコン設定</label>
+                <textarea name="comment_パソコン設定" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_パソコン設定" placeholder="まちがい・反省"></textarea>
+            </div>
 
-            <label for="tomorrow">明日のわたしに：</label>
-            <textarea id="tomorrow" name="tomorrow" rows="3"></textarea>
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="発送準備・検品"> 発送準備・検品</label>
+                <textarea name="comment_発送準備・検品" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_発送準備・検品" placeholder="まちがい・反省"></textarea>
+            </div>
 
-            <button type="submit">🍷 送信する 🍷</button>
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="データ入力"> データ入力</label>
+                <textarea name="comment_データ入力" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_データ入力" placeholder="まちがい・反省"></textarea>
+            </div>
+
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="資料準備・確認"> 資料準備・確認</label>
+                <textarea name="comment_資料準備・確認" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_資料準備・確認" placeholder="まちがい・反省"></textarea>
+            </div>
+
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="備品移動"> 備品移動</label>
+                <textarea name="comment_備品移動" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_備品移動" placeholder="まちがい・反省"></textarea>
+            </div>
+
+            <div class="work-item">
+                <label><input type="checkbox" name="tasks" value="その他"> その他</label>
+                <input type="text" name="task_その他" placeholder="業務名を入力してください">
+                <textarea name="comment_その他" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_その他" placeholder="まちがい・反省"></textarea>
+            </div>
+
+            <button type="submit">🌱 つぶやきを保存する 🌱</button>
         </form>
     </div>
 </body>

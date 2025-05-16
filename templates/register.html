@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+    <style>
+        body {
+            font-family: "Yu Gothic UI", sans-serif;
+            background-color: #f5fff5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 128, 0, 0.2);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            color: #2e8b57;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3cb371;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-box">
+        <h2>ユーザー登録</h2>
+        <form method="POST">
+            <input type="text" name="username" placeholder="IDを入力" required>
+            <input type="password" name="password" placeholder="パスワードを入力" required>
+            <button type="submit">登録する</button>
+        </form>
+    </div>
+</body>
+</html>
