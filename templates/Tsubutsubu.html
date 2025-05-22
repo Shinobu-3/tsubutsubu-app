@@ -25,6 +25,13 @@ h1, h2 {
     color: #2e4e3f;
     margin-bottom: 1em;
     text-align: center;
+    font-size: 1.5em;
+}
+
+.message {
+    text-align: center;
+    line-height: 1.6; /* 行間も少しゆるやかにすると読みやすい */
+    margin-bottom: 1.5em; /* 下に余白を足すと引き立ちます */
 }
 
 input[type="text"],
@@ -45,12 +52,24 @@ button, input[type="submit"] {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 1em;
+    cursor: pointer;[]
+    font-size: 1.5em;
     width: 100%;
     transition: background-color 0.3s;
 }
 
+.save-button {
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+}
+
+.save-button img {
+    height: 2em;
+    vertical-align: middle;
+}
 button:hover, input[type="submit"]:hover {
     background-color: #45a049;
 }
@@ -58,9 +77,14 @@ button:hover, input[type="submit"]:hover {
 </head>
 <body>
     <div class="container">
-        <h1>🌿 今日のつぶつぶ 🌿</h1>
+        <h1>
+    <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;">
+    今日のつぶつぶ
+    <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;">
+</h1>
+
         <div class="message">
-            おつかれさまです。<br>今日の思いをひと粒ずつ言葉の形に残す。<br>
+            おつかれさまです。<br>今日の思いをつぶやきにして、残しましょう。<br>
             担当した業務に✅＆入力してね！
         </div>
         <form method="POST">
@@ -108,7 +132,13 @@ button:hover, input[type="submit"]:hover {
                 <textarea name="mistake_その他" placeholder="まちがい・反省"></textarea>
             </div>
 
-            <button type="submit">🌱 つぶやきを保存する 🌱</button>
+         <button type="submit" class="save-button">
+    <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
+    つぶやきを保存する
+    <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
+</button>
+
+
         </form>
     </div>
 </body>

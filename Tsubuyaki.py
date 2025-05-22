@@ -79,7 +79,11 @@ def form():
         selected_tasks = request.form.getlist("tasks")
         today = date.today().isoformat()
 
-        with open("records.csv", "a", newline="", encoding="utf-8") as f:
+        # CSVファイルの絶対パスを取得（Flaskファイルと同じ場所に保存）
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_dir, "records.csv")
+
+        with open(file_path, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             for task in selected_tasks:
                 if task == "その他":
@@ -94,14 +98,8 @@ def form():
 
     return render_template("Tsubutsubu.html")
 
-
-
 # 完了画面
-# @app.route("/thanks")
-# def thanks():
-#     if "user" not in session:
-#         return redirect(url_for("login"))
-#     return render_template("thanks.html")
+
 @app.route("/thanks")
 def thanks():
     if "user" not in session:
@@ -109,23 +107,53 @@ def thanks():
 
     # Flaskアプリのベースディレクトリ（Tsubuyaki.pyがある場所）
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    image_dir = os.path.join(base_dir, 'static', 'images')  # ←絶対パスに変換
+    image_dir = os.path.join(base_dir, 'static', 'images','food')  # ←絶対パスに変換
 
-    images = [f for f in os.listdir(image_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
-    random_image = random.choice(images)
-    image_url = f"/static/images/{random_image}"  # これはブラウザ用の相対パスでOK
+    # 日本語タイトル対応表（← ここに } を追加して閉じます！）
+    title_dict = {
+        "ichigocake": "いちごのショートケーキ",
+        "katsucurry": "カツカレー",
+        "hamburg": "ハンバーグ",
+        "chouxalacreame": "シュークリーム",
+        "takoyaki": "たこやき",
+        "dorayaki": "どら焼き",
+        "hamburger": "ハンバーガー",
+        "nikuman": "肉まん",
+        "norimaki": "海苔巻き",
+        "pizza": "ピザ",
+        "takoyaki": "たこやき",
+        "montblanc":"モンブラン",
+        "gateauauchocolat":"ガトーショコラ"
 
-    return render_template("thanks.html", image_url=image_url)
+    }
+     # dice.png 以外の画像一覧を取得
+    images = [f for f in os.listdir(image_dir)
+              if f.lower().endswith(('.png', '.jpg', '.jpeg'))
+              and f != 'dice.jpg']
 
+    # ファイル名からタイトル生成（例：01_cookie.jpg → cookie）
+    image_info = []
+    for filename in images:
+        name = os.path.splitext(filename)[0]
+        key = name.split("_", 1)[-1] if "_" in name else name
+        title = title_dict.get(key.lower(), key)
+        image_info.append({"file": filename, "title": title})
+
+    return render_template("thanks.html", images=image_info)
 
 
 # CSV初期化用（ヘッダーのみ作成）
+import os
+
 @app.route("/export")
 def export_csv():
-    if os.path.exists("records.csv"):
+    file_path = os.path.abspath("records.csv")
+    print("CSVファイルの保存先:", file_path)
+
+    if os.path.exists(file_path):
         return "すでにCSVが存在します（records.csv）"
     else:
-        with open("records.csv", "w", newline="", encoding="utf-8") as f:
+        with open(file_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["User ID", "Date", "Task", "Comment", "Mistake"])
         return "CSVファイルを新規作成しました（records.csv）"

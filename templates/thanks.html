@@ -2,45 +2,83 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>完了</title>
+    <title>送信完了</title>
     <style>
         body {
             font-family: "Yu Gothic UI", sans-serif;
-            background-color: #f0fff0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            color: #2e8b57;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 20px;
         }
-        .message {
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        #dice {
+            cursor: pointer;
+            width: 80px;
+            margin-top: 10px;
+        }
+
+        #initial-message {
             text-align: center;
         }
-        h2 {
-            font-size: 28px;
+
+        #result-box {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
         }
-        a {
-            display: inline-block;
+
+        #random-img {
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #2e8b57;
-            padding: 10px 20px;
-            border-radius: 8px;
         }
-        a:hover {
-            background-color: #3cb371;
+
+        #title {
+            font-size: 1.2em;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="message">
-        <h2>おつかれさまでした！</h2>
-        <p>今日の’おつかれ’お届けします</p>
-        <!-- ランダム画像の表示 -->
-    <img src="{{ image_url }}" alt="お菓子画像" width="300">
 
-    <p><a href="/">最初の画面にもどる</a></p>
+    <!-- 最初の画面 -->
+    <div id="initial-message">
+        <h2>おつかれさまでした！</h2>
+        <p>サイコロをクリックしてね！</p>
+        <img id="dice" src="{{ url_for('static', filename='images/dice/dice.jpg') }}"
+             alt="サイコロ" onclick="showRandomImage()">
     </div>
+
+    <!-- サイコロをクリックした後に表示される部分 -->
+    <div id="result-box">
+        <h2>今日の「つぶやき」ありがとう！<br>またね～！<br></h2>
+        <img id="random-img" src="" alt="">
+        <h2 id="title"></h2>
+    </div>
+
+    <script>
+        const images = {{ images | tojson | safe }};
+
+        function showRandomImage() {
+            const random = images[Math.floor(Math.random() * images.length)];
+            document.getElementById("random-img").src = "/static/images/food/" + random.file;
+            document.getElementById("title").textContent = random.title;
+
+            // 表示切り替え
+            document.getElementById("initial-message").style.display = "none";
+            document.getElementById("result-box").style.display = "block";
+        }
+    </script>
+
 </body>
 </html>
