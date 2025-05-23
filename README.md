@@ -76,6 +76,7 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 □ 完了画面：お菓子の画像と一言で、小さなごほうび
 ![完了画面](static/images/screenshot/thanks.png)
+(static/images/screenshot/montblanc.png)
 
 ---
 
