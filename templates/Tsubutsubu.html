@@ -30,8 +30,8 @@ h1, h2 {
 
 .message {
     text-align: center;
-    line-height: 1.6; /* 行間も少しゆるやかにすると読みやすい */
-    margin-bottom: 1.5em; /* 下に余白を足すと引き立ちます */
+    line-height: 1.6; 
+    margin-bottom: 1.5em; 
 }
 
 input[type="text"],
@@ -73,7 +73,7 @@ button, input[type="submit"] {
 button:hover, input[type="submit"]:hover {
     background-color: #45a049;
 }
-    </style>
+ </style>
 </head>
 <body>
     <div class="container">
@@ -141,5 +141,26 @@ button:hover, input[type="submit"]:hover {
 
         </form>
     </div>
+    <script>
+document.querySelector("form").addEventListener("submit", function (e) {
+    const checkedTasks = document.querySelectorAll('input[name="tasks"]:checked');
+    let valid = false;
+
+    checkedTasks.forEach(task => {
+        const value = task.value;
+        const comment = document.querySelector(`textarea[name="comment_${value}"]`);
+        const mistake = document.querySelector(`textarea[name="mistake_${value}"]`);
+        if ((comment && comment.value.trim()) || (mistake && mistake.value.trim())) {
+            valid = true;  // 入力があればOK
+        }
+    });
+
+    if (!valid) {
+        alert("チェックを入れた業務に、つぶやきを入力してください。");
+        e.preventDefault(); // 送信ストップ
+    }
+});
+</script>
+
 </body>
 </html>

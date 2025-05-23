@@ -123,7 +123,8 @@ def thanks():
         "pizza": "ピザ",
         "takoyaki": "たこやき",
         "montblanc":"モンブラン",
-        "gateauauchocolat":"ガトーショコラ"
+        "gateauauchocolat":"ガトーショコラ",
+        "eclairauchocolat":"チョコエクレア"
 
     }
      # dice.png 以外の画像一覧を取得
