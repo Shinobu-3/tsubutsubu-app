@@ -19,20 +19,20 @@ def register():
         password = request.form["password"]
 
         # users.csvがなければ作成（ヘッダー付き）
-        if not os.path.exists("users.csv"):
-            with open("users.csv", "w", newline="", encoding="utf-8") as f:
+        if not os.path.exists(csv_path):
+            with open(csv_path, "w", newline="", encoding="utf-8") as f:
                 writer = csv.writer(f)
                 writer.writerow(["username", "password"])
 
         # 既存ユーザー確認
-        with open("users.csv", "r", encoding="utf-8") as f:
+        with open(csv_path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                if row["username"] == username:
+                if row["username"].strip() == username.strip():
                     return "このIDはすでに使われています。"
 
         # 新しいユーザーを追加
-        with open("users.csv", "a", newline="", encoding="utf-8") as f:
+        with open(csv_path, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow([username, password])
 

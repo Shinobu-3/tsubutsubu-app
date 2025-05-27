@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <title>ログイン</title>
@@ -12,16 +13,40 @@
             align-items: center;
             height: 100vh;
         }
+
+        .container {
+            max-width: 960px;
+            /* 最大幅を広く（例：PC向け） */
+            width: 90%;
+            /* スマホ・小さな画面でも自然に縮む */
+            margin: 3% auto;
+            /* 上下に余白、中央寄せ */
+            background: #ffffff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            /* パディング込みで幅を計算 */
+        }
+
         .login-box {
             background: #fff;
-            padding: 30px;
+            padding: 2em;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            /* 画面に合わせて最大幅を設定 */
+            width: 90%;
+            /* 小さい画面では自動調整 */
+            margin: 0 auto;
+            box-sizing: border-box;
         }
+
         h2 {
             text-align: center;
             color: #333;
         }
+
         input {
             width: 100%;
             padding: 10px;
@@ -30,6 +55,7 @@
             border: 1px solid #ccc;
             border-radius: 6px;
         }
+
         button {
             width: 100%;
             background-color: #FFA500;
@@ -40,23 +66,33 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #FF8C00;
         }
     </style>
 </head>
+
 <body>
     <div class="login-box">
-     <h2>   <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;">
-    今日のつぶつぶログイン
-    <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;"></h2>
+        <h2> <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ"
+                style="height: 1.5em; vertical-align: middle;">
+            今日のつぶつぶログイン
+            <img src="{{ url_for('static', filename='images/icon/hiyoko.png') }}" alt="ひよこ"
+                style="height: 1.5em; vertical-align: middle;">
+        </h2>
 
-    
+
         <form method="POST">
             <input type="text" name="username" placeholder="IDを入力" required>
             <input type="password" name="password" placeholder="パスワードを入力" required>
             <button type="submit">ログイン</button>
         </form>
+        <p style="text-align: center;">
+            <a href="/register">新規登録はこちら</a>
+        </p>
+
     </div>
 </body>
+
 </html>

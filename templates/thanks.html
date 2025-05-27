@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>送信完了</title>
     <!-- 手書き風フォント：Noto Sans JP（筆記風）または Zen Maru Gothic -->
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
@@ -17,6 +19,17 @@
             background-color: #fefefe;
             margin: 0;
             padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            width: 90%;
+            margin: 3% auto;
+            background: #ffffff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
 
         h2 {
@@ -62,30 +75,38 @@
             color: #555;
             margin-top: 20px;
         }
+
         @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-    .fancy-goodbye {
-    font-family: 'Zen Maru Gothic', cursive;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #444;
-    margin-top: 20px;
-    animation: fadeIn 1.2s ease-out;
-}
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        .fancy-goodbye {
+            font-family: 'Zen Maru Gothic', cursive;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #444;
+            margin-top: 20px;
+            animation: fadeIn 1.2s ease-out;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- 最初の画面 -->
     <div id="initial-message">
         <h2>おつかれさまでした！</h2>
         <p>サイコロをクリックしてね！</p>
-        <img id="dice" src="{{ url_for('static', filename='images/dice/dice.jpg') }}"
-             alt="サイコロ" onclick="showRandomImage()">
+        <img id="dice" src="{{ url_for('static', filename='images/dice/dice.jpg') }}" alt="サイコロ"
+            onclick="showRandomImage()">
     </div>
 
     <!-- 結果表示エリア -->
@@ -111,4 +132,5 @@
     </script>
 
 </body>
+
 </html>
