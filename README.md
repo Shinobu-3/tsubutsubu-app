@@ -68,7 +68,8 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 <div style="display: flex; gap: 20px; justify-content: flex-start;">
   <div style="text-align: center;">
-    <img src="static/images/screenshot/loginsample.png" height="200"><br>
+    <img src="https://raw.githubusercontent.com/Shinobu-3/tsubutsubu-app/main/static/images/screenshot/loginsample.png" height="200">
+
     <p><strong>ログイン画面</strong><br>シンプルな入力欄とかわいいアイコン</p>
   </div>
   <div style="text-align: center;">
