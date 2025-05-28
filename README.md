@@ -37,6 +37,7 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 | `/register` | `register.html`   | 新規ユーザー登録画面           |
 | `/form`     | `tsubutsubu.html` | 業務チェック＋コメント記入        |
 | `/thanks`   | `thanks.html`     | ランダムなお菓子画像と励ましの表示    |
+| `/mypage`   | `mypage.html`     | マイページにて自身のコメント表示    |
 
 ### データファイル
 
@@ -63,16 +64,29 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 ## ※ スクリーンショット
 
-□ ログイン画面：やさしい配色とひよこのアイコンで直感的操作
+<p>□ ログイン画面：やさしい配色とひよこのアイコンで直感的操作</p>
 
+<div style="display: flex; gap: 20px; justify-content: flex-start;">
+  <div style="text-align: center;">
+    <img src="static/images/screenshot/login_sample.png" height="200"><br>
+    <p><strong>ログイン画面</strong><br>シンプルな入力欄とかわいいアイコン</p>
+  </div>
+  <div style="text-align: center;">
+    <img src="static/images/screenshot/register_sample.png" height="200"><br>
+    <p><strong>新規登録画面</strong><br>IDとパスワードを登録して開始</p>
+  </div>
+</div>
 
+<br>
 
+<p>□ 入力画面：「つぶつぶ」を残すシンプルなデザイン</p>
 
-
-□ 入力画面：「つぶつぶ」を残すシンプルなデザイン
-
-
-
+<div style="display: flex; gap: 20px; justify-content: flex-start;">
+  <div style="text-align: center;">
+    <img src="static/images/screenshot/tsubutsubu_sample.png" height="200"><br>
+    <p><strong>業務を選択して入力</strong><br>気づきと反省を自由に書けます</p>
+  </div>
+</div>
 
 ## ※ スクリーンショット
 

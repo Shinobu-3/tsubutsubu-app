@@ -44,9 +44,13 @@ def register():
 # ログイン画面
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    next_page = request.args.get("next", url_for("form"))  # デフォルトは form（つぶやき画面）
+
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        next_page = request.form.get("next", url_for("form"))  # POSTから再取得
+
         print("入力されたユーザー名:", username)
         print("入力されたパスワード:", password)
 
@@ -57,22 +61,23 @@ def login():
         with open(csv_path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                print("CSVの行:", row)  # ← ここで内容を表示
+                print("CSVの行:", row)
                 if row["username"] == username and row["password"] == password:
                     print("ログイン成功！")
-                    session["user"] = username
-                    return redirect(url_for("form"))
+                    session["user_id"] = username  # ← mypage に合わせて user_id に統一
+                    return redirect(next_page)
 
         return "ログイン失敗。IDまたはパスワードが間違っています。"
 
-    return render_template("login.html")
+    return render_template("login.html", next=next_page)
+
 
 
 
 # 入力画面
 @app.route("/form", methods=["GET", "POST"])
 def form():
-    if "user" not in session:
+    if "user_id" not in session:
         return redirect(url_for("login"))
 
     if request.method == "POST":
@@ -92,7 +97,7 @@ def form():
                     task_name = task
                 comment = request.form.get(f"comment_{task}", "")
                 mistake = request.form.get(f"mistake_{task}", "")
-                writer.writerow([session["user"], today, task_name, comment, mistake])
+                writer.writerow([session["user_id"], today, task_name, comment, mistake])
 
         return redirect(url_for("thanks"))
 
@@ -102,7 +107,7 @@ def form():
 
 @app.route("/thanks")
 def thanks():
-    if "user" not in session:
+    if "user_id" not in session:
         return redirect(url_for("login"))
 
     # Flaskアプリのベースディレクトリ（Tsubuyaki.pyがある場所）
@@ -147,6 +152,7 @@ def thanks():
 import os
 
 @app.route("/export")
+
 def export_csv():
     file_path = os.path.abspath("records.csv")
     print("CSVファイルの保存先:", file_path)
@@ -158,7 +164,30 @@ def export_csv():
             writer = csv.writer(f)
             writer.writerow(["User ID", "Date", "Task", "Comment", "Mistake"])
         return "CSVファイルを新規作成しました（records.csv）"
+    
+@app.route("/mypage", methods=["GET"])
+def mypage():
+    if "user_id" not in session:
+        return redirect(url_for("login", next=request.path))
 
+    user_id = session["user_id"]
+    selected_date = request.args.get("date")  # URLパラメータから日付を取得
+    user_records = []
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    record_path = os.path.join(base_dir, "records.csv")
+
+    if not os.path.exists(record_path):
+        return "記録ファイル（records.csv）が見つかりません。"
+
+    with open(record_path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["User ID"] == user_id:
+                if not selected_date or row["Date"] == selected_date:
+                    user_records.append(row)
+
+    return render_template("mypage.html", records=user_records, user_id=user_id, selected_date=selected_date)
 
 # ログアウト
 @app.route("/logout")

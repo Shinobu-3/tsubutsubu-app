@@ -1,135 +1,113 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>今日のつぶつぶ</title>
     <style>
         body {
-    font-family: "Noto Sans JP", "Helvetica Neue", "Yu Gothic", sans-serif;
-    background: linear-gradient(to bottom, #eaf8f0, #ffffff);
-    color: #2e4e3f;
-    margin: 0;
-    padding: 0;
-}
+            font-family: "Noto Sans JP", "Helvetica Neue", "Yu Gothic", sans-serif;
+            background: linear-gradient(to bottom, #eaf8f0, #ffffff);
+            color: #2e4e3f;
+            margin: 0;
+            padding: 0;
+        }
 
-.container {
-    max-width: 960px;
-    width: 90%;
-    margin: 3% auto;
-    background: #ffffff;
-    padding: 2em;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
+        .container {
+            max-width: 960px;
+            width: 90%;
+            margin: 3% auto;
+            background: #ffffff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
 
+        h1 {
+            color: #2e4e3f;
+            margin-bottom: 1em;
+            text-align: center;
+            font-size: 1.5em;
+        }
 
-h1, h2 {
-    color: #2e4e3f;
-    margin-bottom: 1em;
-    text-align: center;
-    font-size: 1.5em;
-}
+        .message {
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
 
-.message {
-    text-align: center;
-    line-height: 1.6; 
-    margin-bottom: 1.5em; 
-}
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
 
-input[type="text"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1.2em;
-}
+        button,
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 2em;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
 
-button, input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 28px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 2em;
-    width: 100%;
-    transition: background-color 0.3s;
-}
+        .save-button {
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+        }
 
-.save-button {
-    font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-}
+        .save-button img {
+            height: 2em;
+            vertical-align: middle;
+        }
 
-.save-button img {
-    height: 2em;
-    vertical-align: middle;
-}
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
 
-button:hover, input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
- </style>
+       
+    </style>
 </head>
+
 <body>
     <div class="container">
         <h1>
-    <img src="{{ url_for('static', filename='images/icon/hiyokorei.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;">
-    今日のつぶつぶ
-    <img src="{{ url_for('static', filename='images/icon/hiyokorei.png') }}" alt="ひよこ" style="height: 1.5em; vertical-align: middle;">
-</h1>
+            <img src="{{ url_for('static', filename='images/icon/hiyokorei.png') }}" alt="ひよこ"
+                style="height: 1.5em; vertical-align: middle;">
+            今日のつぶつぶ
+            <img src="{{ url_for('static', filename='images/icon/hiyokorei.png') }}" alt="ひよこ"
+                style="height: 1.5em; vertical-align: middle;">
+        </h1>
 
         <div class="message">
-            おつかれさまです。<br>「つぶつぶ」とは、その日の気づきや想いを表す小さなつぶやきです<br>
+            おつかれさまです。<br>
+            「つぶつぶ」とは、その日の気づきや想いを表す小さなつぶやきです。<br>
             担当した業務に✅＆入力してね！
         </div>
+
         <form method="POST">
-
+            {% for task in ["教室清掃", "パソコン設定", "発送準備・検品", "データ入力", "資料準備・確認", "備品移動"] %}
             <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="教室清掃"> 教室清掃</label>
-                <textarea name="comment_教室清掃" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_教室清掃" placeholder="まちがい・反省"></textarea>
+                <label><input type="checkbox" name="tasks" value="{{ task }}"> {{ task }}</label>
+                <textarea name="comment_{{ task }}" placeholder="気づき・達成"></textarea>
+                <textarea name="mistake_{{ task }}" placeholder="まちがい・反省"></textarea>
             </div>
-
-            <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="パソコン設定"> パソコン設定</label>
-                <textarea name="comment_パソコン設定" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_パソコン設定" placeholder="まちがい・反省"></textarea>
-            </div>
-
-            <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="発送準備・検品"> 発送準備・検品</label>
-                <textarea name="comment_発送準備・検品" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_発送準備・検品" placeholder="まちがい・反省"></textarea>
-            </div>
-
-            <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="データ入力"> データ入力</label>
-                <textarea name="comment_データ入力" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_データ入力" placeholder="まちがい・反省"></textarea>
-            </div>
-
-            <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="資料準備・確認"> 資料準備・確認</label>
-                <textarea name="comment_資料準備・確認" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_資料準備・確認" placeholder="まちがい・反省"></textarea>
-            </div>
-
-            <div class="work-item">
-                <label><input type="checkbox" name="tasks" value="備品移動"> 備品移動</label>
-                <textarea name="comment_備品移動" placeholder="気づき・達成"></textarea>
-                <textarea name="mistake_備品移動" placeholder="まちがい・反省"></textarea>
-            </div>
+            {% endfor %}
 
             <div class="work-item">
                 <label><input type="checkbox" name="tasks" value="その他"> その他</label>
@@ -138,35 +116,23 @@ button:hover, input[type="submit"]:hover {
                 <textarea name="mistake_その他" placeholder="まちがい・反省"></textarea>
             </div>
 
-         <button type="submit" class="save-button">
-    <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
-    つぶやきを保存する
-    <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
-</button>
-
-
+            <button type="submit" class="save-button">
+                <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
+                つぶやきを保存する
+                <img src="{{ url_for('static', filename='images/icon/buncho.png') }}" alt="桜文鳥">
+            </button>
         </form>
+
     </div>
+
     <script>
-document.querySelector("form").addEventListener("submit", function (e) {
-    const checkedTasks = document.querySelectorAll('input[name="tasks"]:checked');
-    let valid = false;
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const checkedTasks = document.querySelectorAll('input[name="tasks"]:checked');
+            let valid = false;
 
-    checkedTasks.forEach(task => {
-        const value = task.value;
-        const comment = document.querySelector(`textarea[name="comment_${value}"]`);
-        const mistake = document.querySelector(`textarea[name="mistake_${value}"]`);
-        if ((comment && comment.value.trim()) || (mistake && mistake.value.trim())) {
-            valid = true;  // 入力があればOK
-        }
-    });
+            checkedTasks.forEach(task => {
+                const value = task.value;
+                const comment = document.querySelector(`textarea[name="comment_${value}"]`);
+                const mistake = document.querySelector(`textarea[name="mistake_${value}"]`);
 
-    if (!valid) {
-        alert("チェックを入れた業務に、つぶやきを入力してください。");
-        e.preventDefault(); // 送信ストップ
-    }
-});
-</script>
-
-</body>
-</html>
+                if ((comment && comment.value.trim()) || (mistake && mistake.value.trim())) {
