@@ -84,7 +84,7 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 <div style="display: flex; gap: 20px; justify-content: flex-start;">
   <div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/Shinobu-3/tsubutsubu-app/main/static/images/screenshot/form.png" height="400"><br>
+    <img src="https://raw.githubusercontent.com/Shinobu-3/tsubutsubu-app/main/static/images/screenshot/form.png" height="480"><br>
     <p><strong>業務を選択して入力</strong><br>気づきと反省を自由に記録できます</p>
   </div>
 </div>
@@ -95,11 +95,11 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 <div style="display: flex; gap: 20px; justify-content: flex-start;">
   <div style="text-align: center;">
-    <img src="static/images/screenshot/thanks.png" height="200"><br>
+    <img src="static/images/screenshot/thanks.png" height="220"><br>
     <p><strong>今日の「つぶやき」ありがとう！</strong><br>シュークリームどう？<br>またね！</p>
   </div>
   <div style="text-align: center;">
-    <img src="static/images/screenshot/montblanc.png" height="200"><br>
+    <img src="static/images/screenshot/montblanc.png" height="220"><br>
     <p><strong>今日の「つぶやき」ありがとう！</strong><br>モンブランいかが？<br>またね！</p>
   </div> 
 </div>
@@ -107,7 +107,7 @@ A型事業における給付費（助成金）は、出勤率・労働時間・�
 
 
 
-
+S
 ---
 
 ## ※ このアプリについて
